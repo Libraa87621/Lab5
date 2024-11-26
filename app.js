@@ -25,7 +25,7 @@ app.use('/users', usersRouter);
 app.use('/product', productRouter);
 
 
-mongoose.connect('mongodb+srv://annvps41218:2692005@cluster0.olub1.mongodb.net//hihi')
+mongoose.connect('mongodb+srv://annvps41218:2692005@cluster0.olub1.mongodb.net/hihi')
     .then(() => console.log('Kết nối MongoDB thành công'))
     .catch((err) => console.error('Lỗi kết nối MongoDB:', err));
 
