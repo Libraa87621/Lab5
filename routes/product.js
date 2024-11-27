@@ -6,34 +6,33 @@ const config = require("../ultil/tokenConfig");
 
 
 
-router.get("/all", async function (req, res) {
-            var list = await product.find();
-            res.status(200).json(list);
-
-  });
-
-
-
-
 router.get("/run", async function (req, res) {
   try {
     const token = req.header("Authorization").split(' ')[1];
     if (token) {
       JWT.verify(token, config.SECRETKEY, async function (err, id) {
         if (err) {
-          res.status(403).json({ "status": false, message: "có lỗi xảy ra" + err });
+          res.status(403).json({ "status": false, message: "Có lỗi xảy ra: " + err });
         } else {
+          // Lấy danh sách sản phẩm từ database
           var list = await product.find();
-          res.status(200).json(list);
+
+          // Trả về dữ liệu theo cấu trúc yêu cầu
+          res.status(200).json({
+            status: true,
+            message: "Thành công",
+            data: list // Danh sách sản phẩm nằm trong trường "data"
+          });
         }
       });
     } else {
-      res.status(401).json({ "status": false, message: "có lỗi xảy ra" + err });
+      res.status(401).json({ "status": false, message: "Có lỗi xảy ra: Không tìm thấy token" });
     }
   } catch (e) {
-    res.status(400).json({ status: false, message: "Không Xác Thực" });
+    res.status(400).json({ status: false, message: "Không xác thực" });
   }
 });
+
 
 // Lấy danh sách tất cả các sản phẩm có số lượng lớn hơn giá trị X
 // localhost:3000/product/sp-lon-hon-X?soluong=200
