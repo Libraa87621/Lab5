@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 
 var usersRouter = require('./routes/users');
 var productRouter = require('./routes/product');
-var authorRouter = require('./routes/authors'); 
+var authorRouter = require('./routes/authorRoutes'); 
 
 var app = express();
 
