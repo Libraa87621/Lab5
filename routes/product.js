@@ -14,14 +14,14 @@ router.get("/run", async function (req, res) {
         if (err) {
           res.status(403).json({ "status": false, message: "Có lỗi xảy ra: " + err });
         } else {
-          // Lấy danh sách sản phẩm từ database
+  
           var list = await product.find();
 
-          // Trả về dữ liệu theo cấu trúc yêu cầu
+      
           res.status(200).json({
             status: true,
             message: "Thành công",
-            data: list // Danh sách sản phẩm nằm trong trường "data"
+            data: list
           });
         }
       });
@@ -33,9 +33,6 @@ router.get("/run", async function (req, res) {
   }
 });
 
-
-// Lấy danh sách tất cả các sản phẩm có số lượng lớn hơn giá trị X
-// localhost:3000/product/sp-lon-hon-X?soluong=200
 router.get("/sp-lon-hon-X", async function (req, res) {
   try {
     const token = req.header("Authorization").split(' ')[1];
@@ -58,8 +55,7 @@ router.get("/sp-lon-hon-X", async function (req, res) {
   }
 });
 
-// Lấy danh sách sản phẩm có giá từ 20000 đến 50000
-// localhost:3000/products/sp-trong-khoang-gia?min=20000&max=50000
+
 router.get("/sp-trong-khoang-gia", async function (req, res) {
   try {
     const token = req.header("Authorization").split(' ')[1];
@@ -82,8 +78,7 @@ router.get("/sp-trong-khoang-gia", async function (req, res) {
   }
 });
 
-// Lấy danh sách sản phẩm có số lượng nhỏ hơn 10 hoặc giá lớn hơn 15000
-//localhost:3210/product/so-sanh?soluong=10&gia=20000
+
 router.get("/so-sanh", async function (req, res) {
   try {
     const token = req.header("Authorization").split(' ')[1];
@@ -105,8 +100,7 @@ router.get("/so-sanh", async function (req, res) {
   }
 });
 
-// Lấy thông tin chi tiết của sản phẩm
-//localhost:3210/product/chi-tiet-sp/672f51668011c2592855ab7c
+
 router.get("/chi-tiet-sp/:id", async function (req, res) {
   try {
     const token = req.header("Authorization").split(' ')[1];
@@ -129,7 +123,7 @@ router.get("/chi-tiet-sp/:id", async function (req, res) {
   }
 });
 
-//thêm một sản phẩm mới
+
 router.post("/add", async function (req, res) {
   try {
     const token = req.header("Authorization").split(' ')[1];
@@ -153,8 +147,7 @@ router.post("/add", async function (req, res) {
   }
 })
 
-// localhost:3210/product/edit/672f51668011c2592855ab7c
-// lưu ý nhập đủ thông tin quan trọng nhất là id
+
 router.put("/edit/:id", async function (req, res) {
   try {
     const token = req.header("Authorization").split(' ')[1];
@@ -184,7 +177,7 @@ router.put("/edit/:id", async function (req, res) {
   }
 })
 
-//xóa
+
 router.delete("/delete/:id", async function (req, res) {
   try {
     const token = req.header("Authorization").split(' ')[1];

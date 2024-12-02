@@ -12,7 +12,6 @@ router.get('/all', async (req, res) => {
     }
 });
 
-// GET /user/:id - Lấy thông tin chi tiết của người dùng theo ID
 router.get('/:id', async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
@@ -23,18 +22,16 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// POST /user - Thêm người dùng mới
 router.post('/post', async (req, res) => {
     try {
-        const newUser = new User(req.body); // Tạo người dùng mới từ dữ liệu nhận được
+        const newUser = new User(req.body); 
         const savedUser = await newUser.save();
-        res.json(savedUser);  // Trả về người dùng vừa được lưu
+        res.json(savedUser);  
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-// PUT /user/:id - Cập nhật thông tin người dùng
 router.put('/:id', async (req, res) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -44,7 +41,6 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// DELETE /user/:id - Xóa người dùng theo ID
 router.delete('/:id', async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);

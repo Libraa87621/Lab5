@@ -1,21 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const Author = require('../Models/Author'); // Import model Author
+const Author = require('../Models/Author'); 
 
-// GET /authors - Lấy danh sách tác giả
+
 router.get('/all', async (req, res) => {
     try {
-        const authors = await Author.find(); // Lấy tất cả tác giả
+        const authors = await Author.find(); 
         res.json(authors);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-// GET /authors/:id - Lấy thông tin chi tiết của tác giả theo ID
+
 router.get('/:id', async (req, res) => {
     try {
-        const author = await Author.findById(req.params.id); // Lấy tác giả theo ID
+        const author = await Author.findById(req.params.id);
         if (!author) return res.status(404).json({ message: 'Author not found' });
         res.json(author);
     } catch (err) {
@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// POST /authors - Thêm tác giả mới
+
 router.post('/post', async (req, res) => {
     try {
         const newAuthor = new Author(req.body); 
@@ -34,7 +34,7 @@ router.post('/post', async (req, res) => {
     }
 });
 
-// PUT /authors/:id - Cập nhật thông tin tác giả
+
 router.put('/:id', async (req, res) => {
     try {
         const updatedAuthor = await Author.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -44,7 +44,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// DELETE /authors/:id - Xóa tác giả
+
 router.delete('/:id', async (req, res) => {
     try {
         await Author.findByIdAndDelete(req.params.id);
