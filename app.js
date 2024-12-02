@@ -9,6 +9,8 @@ var mongoose = require('mongoose');
 var usersRouter = require('./routes/users');
 var productRouter = require('./routes/product');
 var authorRouter = require('./routes/authorRoutes'); 
+var userRouter = require('./routes/userRoutes'); 
+var bookRouter = require('./routes/bookRoutes'); 
 
 var app = express();
 
@@ -26,6 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/authors', authorRouter);
 app.use('/users', usersRouter);
 app.use('/product', productRouter);
+app.use('/user', userRouter);
+app.use('/books', bookRouter);
 
  mongoose.connect('mongodb+srv://annvps41218:2692005@cluster0.olub1.mongodb.net/hihi')
    // mongoose.connect('mongodb://localhost:27017/hihi')
