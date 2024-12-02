@@ -38,7 +38,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         await Book.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Book deleted successfully' });
+        res.json({ message: 'Sách đuọc xoá thành công' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

@@ -15,7 +15,7 @@ router.get('/all', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
-        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (!user) return res.status(404).json({ message: 'user không tồn tại' });
         res.json(user);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -45,9 +45,9 @@ router.delete('/:id', async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: 'User không tồn tại' });
         }
-        res.json({ message: 'User deleted successfully' });
+        res.json({ message: 'User được xóa thành công' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

@@ -16,7 +16,7 @@ router.get('/all', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const author = await Author.findById(req.params.id);
-        if (!author) return res.status(404).json({ message: 'Author not found' });
+        if (!author) return res.status(404).json({ message: 'Tac gia khong ton tai' });
         res.json(author);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -48,7 +48,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         await Author.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Author deleted successfully' });
+        res.json({ message: 'Tác Giả đã được xóa thành công' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
