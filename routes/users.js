@@ -17,10 +17,8 @@ router.post("/login", async function(req, res) {
     const checkUser = await userModel.findOne({ name: name, password: password });
     
     if (checkUser == null) {
-      // Trả về HTTP status 401 nếu thông tin không hợp lệ
       res.status(401).json({ status: false, message: "Đăng nhập không thành công" });
     } else {
-      // Tạo token khi thông tin đúng
       const token = JWT.sign({ name: name }, config.SECRETKEY, { expiresIn: '30s' });
       const refreshToken = JWT.sign({ name: name }, config.SECRETKEY, { expiresIn: '1d' });
       
