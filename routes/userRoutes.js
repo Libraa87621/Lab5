@@ -26,9 +26,9 @@ router.get('/:id', async (req, res) => {
 // POST /user - Thêm người dùng mới
 router.post('/post', async (req, res) => {
     try {
-        const newUser = new User(req.body);
+        const newUser = new User(req.body); // Tạo người dùng mới từ dữ liệu nhận được
         const savedUser = await newUser.save();
-        res.json(savedUser);
+        res.json(savedUser);  // Trả về người dùng vừa được lưu
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -44,10 +44,13 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// DELETE /user/:id - Xóa người dùng
+// DELETE /user/:id - Xóa người dùng theo ID
 router.delete('/:id', async (req, res) => {
     try {
-        await User.findByIdAndDelete(req.params.id);
+        const user = await User.findByIdAndDelete(req.params.id);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
         res.json({ message: 'User deleted successfully' });
     } catch (err) {
         res.status(500).json({ error: err.message });
