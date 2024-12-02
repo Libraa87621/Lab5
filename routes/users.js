@@ -22,7 +22,6 @@ router.post("/login", async function(req,res){
       const token = JWT.sign({name: name}, config.SECRETKEY, {expiresIn: '30s'});
       const refreshToken = JWT.sign({name: name}, config.SECRETKEY, {expiresIn: '1d'});
       
-      // Đổi từ 400 thành 200
       res.status(200).json({status: true, message: "đăng nhập thành công", token: token, refreshToken: refreshToken});
     }
     

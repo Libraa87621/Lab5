@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 
 var usersRouter = require('./routes/users');
 var productRouter = require('./routes/product');
+var authorRouter = require('./routes/authors'); 
 
 var app = express();
 
@@ -21,6 +22,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use('/authors', authorRouter);
 app.use('/users', usersRouter);
 app.use('/product', productRouter);
 
@@ -28,6 +31,8 @@ app.use('/product', productRouter);
    // mongoose.connect('mongodb://localhost:27017/hihi')
     .then(() => console.log('Kết nối MongoDB thành công'))
     .catch((err) => console.error('Lỗi kết nối MongoDB:', err));
+
+
 
 
 // catch 404 and forward to error handler

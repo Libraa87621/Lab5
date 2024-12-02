@@ -125,7 +125,7 @@ router.get("/chi-tiet-sp/:id", async function (req, res) {
     }
 
   } catch (e) {
-    res.status(400).json({ status: false, message: "Có lỗi xảy ra" });
+    res.status(400).json({ status: false, message: "Có lỗi xảy ra" });s
   }
 });
 
