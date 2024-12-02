@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../Models/User'); // Import model User
 
-// GET /users - Lấy danh sách người dùng
+// GET /user - Lấy danh sách người dùng
 router.get('/all', async (req, res) => {
     try {
         const users = await User.find();
@@ -12,7 +12,7 @@ router.get('/all', async (req, res) => {
     }
 });
 
-// GET /users/:id - Lấy thông tin chi tiết của người dùng theo ID
+// GET /user/:id - Lấy thông tin chi tiết của người dùng theo ID
 router.get('/:id', async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// POST /users - Thêm người dùng mới
+// POST /user - Thêm người dùng mới
 router.post('/', async (req, res) => {
     try {
         const newUser = new User(req.body);
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// PUT /users/:id - Cập nhật thông tin người dùng
+// PUT /user/:id - Cập nhật thông tin người dùng
 router.put('/:id', async (req, res) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -44,7 +44,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// DELETE /users/:id - Xóa người dùng
+// DELETE /user/:id - Xóa người dùng
 router.delete('/:id', async (req, res) => {
     try {
         await User.findByIdAndDelete(req.params.id);
