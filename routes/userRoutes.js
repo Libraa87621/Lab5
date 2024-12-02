@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST /user - Thêm người dùng mới
-router.post('/', async (req, res) => {
+router.post('/post', async (req, res) => {
     try {
         const newUser = new User(req.body);
         const savedUser = await newUser.save();
