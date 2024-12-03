@@ -6,7 +6,7 @@ const config = require("../ultil/tokenConfig");
 
 
 
-router.get("/run", async function (req, res) {
+router.get("/all", async function (req, res) {
   try {
     const token = req.header("Authorization").split(' ')[1];
     if (token) {
@@ -32,6 +32,8 @@ router.get("/run", async function (req, res) {
     res.status(400).json({ status: false, message: "Không xác thực" });
   }
 });
+
+
 
 router.get("/sp-lon-hon-X", async function (req, res) {
   try {
